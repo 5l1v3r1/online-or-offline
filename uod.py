@@ -2,9 +2,13 @@ import urllib
 import re
 
 def check(link):
+	# Base link
     url = 'http://downorisitjustme.com/res.php?url='+link
+    # Open url and read the HTML content
     x = urllib.urlopen(url).read()
+    # Assign regular expression pattern 
     pat = re.compile('appears to be .+\<b\>(.+\!)\<\/b\>\<\/font\>')
+    # Find the matching string
     rsp = str(pat.findall(x))
     if rsp == "['Online!']":
         print"[+] ONLINE!"
@@ -12,8 +16,6 @@ def check(link):
         print"[-] OFFLINE!"
     else:
         print"[?] UNKNOWN"
-    
-    
 
 if __name__ == "__main__":
     import sys
